@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Storage GO - Products</title>
+    <title>Storage GO - Suppliers</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -50,11 +50,9 @@
               <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Name</th>
-                <th scope="col">Brand</th>
-                <th scope="col">Type</th>
-                <th scope="col">Caterogy</th>
-                <th scope="col">Value</th>
-                <th scope="col">Amount</th>
+                <th scope="col">CNPJ</th>
+                <th scope="col">Address</th>
+                <th scope="col">Contact</th>
                 <th scope="col">Edit</th>
                 <th scope="col">Delete</th>
               </tr>
@@ -62,12 +60,10 @@
             <tbody>
               <tr>
                 <th scope="row">1</th>
-                <td>LOGITKK</td>
-                <td>Logitec</td>
-                <td>Mouse</td>
-                <td>Gamer</td>
-                <td>R$ 250,00</td>
-                <td>12</td>
+                <td>Misocraft</td>
+                <td>24.317.645/0001-10</td>
+                <td>Rua Casa do Chapeu, 37</td>
+                <td>mc_commercial@mc.com</td>
                 <td><button class="btn" id="edit-btn"><i class="fas fa-edit"></i></button></td>
                 <td><button class="btn" id="delete-btn"><i class="far fa-trash-alt"></i></button></td>
               </tr>
@@ -99,10 +95,7 @@
     body {
         overflow: hidden;
     }
-    table{
-        background-color: #3e3eff;
-        color: white;
-    }
+
     * {
         margin: 0;
         padding: 0;
@@ -175,7 +168,7 @@
         background-color: #d73905;
         color: #fff;
     }
-    
+
     #delete-btn {
         background-color: #ab0505;
         color: #fff;
