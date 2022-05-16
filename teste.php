@@ -1,16 +1,13 @@
 <?php
-    $servidor = "localhost";
-    $usuario = "id18706511_rafaela";
-    $senha = "!Charizard1235";
-    $dbname = "id18706511_storagego";    
-    
-    $conecta = mysqli_connect($servidor, $usuario, $senha, $dbname);
-    
-    if(!$conecta){
-        die("Falha na conexao: " . mysqli_connect_error());
-    }else{
-        echo "Conexao realizada com sucesso";
-    }
-     
-mysqli_close($conecta);
+define('HOST', '127.0.0.1');
+define('USERNAME', 'root');
+define('PASSWORD', '123');
+define('DB', 'storagegodb');
+
+$mysqli = mysqli_connect(HOST, USERNAME, PASSWORD, DB);
+
+if($mysqli->error){
+    die("Falha ao conectar ao banco de dados: " . $mysqli->error);
+}
+
 ?> 
