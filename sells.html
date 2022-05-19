@@ -12,6 +12,40 @@
     <link rel="stylesheet" href="css/style.css">
     <link href="css/all.css" rel="stylesheet">
 
+    <!-- bootstrap js -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.min.js"
+        integrity="sha384-5h4UG+6GOuV9qXh6HqOLwZMY4mnLPraeTrjT5v07o347pj6IkfuoASuGBhfDsp3d"
+        crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function () {
+            // Activate tooltip
+            $('[data-toggle="tooltip"]').tooltip();
+
+            // Select/Deselect checkboxes
+            var checkbox = $('table tbody input[type="checkbox"]');
+            $("#selectAll").click(function () {
+                if (this.checked) {
+                    checkbox.each(function () {
+                        this.checked = true;
+                    });
+                } else {
+                    checkbox.each(function () {
+                        this.checked = false;
+                    });
+                }
+            });
+            checkbox.click(function () {
+                if (!this.checked) {
+                    $("#selectAll").prop("checked", false);
+                }
+            });
+        });
+    </script>
+
 
 
 </head>
@@ -44,54 +78,188 @@
     </nav>
     <section class="p-4 my-container active-cont">
         <button class="btn my-4" id="menu-btn"><i class="fa-solid fa-bars"></i></button>
-        <button class="btn my-4" id="register-btn"><i class="fas fa-plus-square"></i>  Register</button>
-        <table class="table table-striped " style="background-color: #3e3eff81; color:#fff;">
-            <thead>
-              <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Supplier</th>
-                <th scope="col">Brand</th>
-                <th scope="col">Handle</th>
-                <th scope="col">Handle</th>
-                <th scope="col">Edit</th>
-                <th scope="col">Delete</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>Otto</td>
-                <td><button class="btn" id="edit-btn"><i class="fas fa-edit"></i></button></td>
-                <td><button class="btn" id="delete-btn"><i class="far fa-trash-alt"></i></button></td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="container-xl">
+            <div class="table-responsive">
+                <div class="table-wrapper">
+                    <div class="table-title">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h2>Manage <b>Sells</b></h2>
+                            </div>
+                            <div class="col-sm-6">
+                                <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i
+                                        class="fas fa-plus-square"></i> <span>Add New Sells</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table table-striped" id="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Product ID</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Value</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>09/11/2001</td>
+                                <td>09112001</td>
+                                <td>Mouse Logitec</td>
+                                <td>R$ 250,00</td>
+                                <td>
+                                    <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="fas fa-edit"
+                                            style="color: #d73905;" data-toggle="tooltip" title="Edit"></i></a>  
+                                    <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
+                                            class="far fa-trash-alt" style="color: #ab0505;" data-toggle="tooltip"
+                                            title="Delete"></i></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="clearfix">
+                        <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+                        <ul class="pagination">
+                            <li class="page-item disabled"><a href="#">Previous</a></li>
+                            <li class="page-item active"><a href="#" class="page-link">1</a></li>
+                            <li class="page-item"><a href="#" class="page-link">2</a></li>
+                            <li class="page-item"><a href="#" class="page-link">3</a></li>
+                            <li class="page-item"><a href="#" class="page-link">4</a></li>
+                            <li class="page-item"><a href="#" class="page-link">5</a></li>
+                            <li class="page-item"><a href="#" class="page-link">Next</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Edit Modal HTML -->
+        <div id="addEmployeeModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content" style="color: #000;">
+                    <form>
+                        <div class="modal-header">
+                            <h4 class="modal-title">Add Sells</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label>Date</label>
+                                <input type="date" class="form-control-plaintext" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="brand">Product ID</label>
+                                <input list="brand" class="form-control-plaintext" required>
+                                <datalist id="brand">
+                                    <option value="09112001"></option>
+                                    <option value="09184201"></option>
+                                    <option value="9666666"></option>
+                                </datalist>
+                            </div>
+                            <div class="form-group">
+                                <label>Description</label>
+                                <input type="text" class="form-control-plaintext" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Value</label>
+                                <input type="number" min="1" step="any" class="form-control-plaintext" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                            <input type="submit" class="btn btn-success" value="Add">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Edit Modal HTML -->
+        <div id="editEmployeeModal" class="modal fade" style="color: #000;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form>
+                        <div class="modal-header">
+                            <h4 class="modal-title">Edit Sells</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label>Date</label>
+                                <input type="date" class="form-control-plaintext" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="brand">Product ID</label>
+                                <input list="brand" class="form-control-plaintext" required>
+                                <datalist id="brand">
+                                    <option value="09112001"></option>
+                                    <option value="09184201"></option>
+                                    <option value="9666666"></option>
+                                </datalist>
+                            </div>
+                            <div class="form-group">
+                                <label>Description</label>
+                                <input type="text" class="form-control-plaintext" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Value</label>
+                                <input type="number" min="1" step="any" class="form-control-plaintext" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                            <input type="submit" class="btn btn-success" value="Add">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Delete Modal HTML -->
+        <div id="deleteEmployeeModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form>
+                        <div class="modal-header">
+                            <h4 class="modal-title">Delete Sells</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Are you sure you want to delete these Records?</p>
+                            <p class="text-warning"><small>This action cannot be undone.</small></p>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                            <input type="submit" class="btn btn-danger" value="Delete">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </section>
-    <!-- bootstrap js -->
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.min.js"
-        integrity="sha384-5h4UG+6GOuV9qXh6HqOLwZMY4mnLPraeTrjT5v07o347pj6IkfuoASuGBhfDsp3d"
-        crossorigin="anonymous"></script>
-    <!-- custom js -->
-    <script>
-        var menu_btn = document.querySelector("#menu-btn")
-        var sidebar = document.querySelector("#sidebar")
-        var container = document.querySelector(".my-container")
-        menu_btn.addEventListener("click", () => {
-            sidebar.classList.toggle("active-nav")
-            container.classList.toggle("active-cont")
-        })
-    </script>
 
 </body>
+<script>
+    var menu_btn = document.querySelector("#menu-btn");
+    var sidebar = document.querySelector("#sidebar");
+    var container = document.querySelector(".my-container");
+    menu_btn.addEventListener("click", () => {
+        sidebar.classList.toggle("active-nav");
+        container.classList.toggle("active-cont");
+    });
+
+
+</script>
 <style>
+
     body {
         overflow: hidden;
+        overflow-y: hidden;
+    }
+
+    #table {
+        background-color: #3e3eff89;
+        color: white;
     }
 
     * {
@@ -157,23 +325,56 @@
         color: #fff;
     }
 
-    #register-btn {
-        background-color: #056b00;
-        color: #fff;
-    }
-
-    #edit-btn{
-        background-color: #d73905;
-        color: #fff;
-    }
-
-    #delete-btn {
-        background-color: #ab0505;
-        color: #fff;
-    }
-
     #menu-btn:focus {
         box-shadow: 0 0 0 0.25rem #7952b344;
+    }
+
+    .modal .modal-dialog {
+        max-width: 400px;
+    }
+
+    .modal .modal-header,
+    .modal .modal-body,
+    .modal .modal-footer {
+        padding: 20px 30px;
+        color: #000;
+    }
+
+    .modal .modal-content {
+        border-radius: 3px;
+        font-size: 14px;
+    }
+
+    .modal .modal-footer {
+        background: #ecf0f1;
+        border-radius: 0 0 3px 3px;
+    }
+
+    .modal .modal-title {
+        display: inline-block;
+    }
+
+    .modal .form-control {
+        border-radius: 2px;
+        box-shadow: none;
+        border-color: #dddddd;
+    }
+
+    .modal textarea.form-control {
+        resize: vertical;
+    }
+
+    .modal .btn {
+        border-radius: 2px;
+        min-width: 100px;
+    }
+
+    .modal form label {
+        font-weight: normal;
+    }
+
+    .table-responsive {
+        margin: 30px 0;
     }
 </style>
 
