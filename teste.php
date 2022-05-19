@@ -10,16 +10,16 @@
         die("Falha na conexao: " . mysqli_connect_error());
     }
     else{
+    
+        $nome = $_POST["username"];
+        $senha = $_POST["password"];   
 
         if(isset($_POST["username"]))
         {    
-            $nome = $_POST["username"];
-            $senha = $_POST["password"];   
-    
-            $result_usuario = mysqli_query("SELECT * FROM tb_usuario WHERE nome = '$nome' AND senha = '$password'")
-            or die("erro no select");
+            $result_usuario = "SELECT * FROM tb_usuario WHERE nome = '$nome' AND senha = '$senha'";
+            $resultado_usuario = mysqli_query($conecta, $result_usuario);
         }
-        if(mysql_num_rows($result_usuario)<=0)
+        if(mysqli_num_rows($resultado_usuario)<=0)
         {
             echo"<script language='javascript' type='text/javascript'>
             alert('Login e/ou senha incorretos');</script>";
